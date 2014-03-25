@@ -12,13 +12,15 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/dylanahsmith/ruby-string-buffer"
   spec.license       = "MIT"
 
-  if defined?(RUBY_ENGINE) && RUBY_ENGINE == 'ruby'
-    spec.extensions  = ['ext/string_buffer/extconf.rb']
-  end
   spec.files         = `git ls-files -z`.split("\x0")
   spec.test_files    = spec.files.grep(%r{^(test)/})
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
+
+  if defined?(RUBY_ENGINE) && RUBY_ENGINE == 'ruby'
+    spec.extensions  = ['ext/string_buffer/extconf.rb']
+    spec.add_development_dependency 'rake-compiler'
+  end
 end
